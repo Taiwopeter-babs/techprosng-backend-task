@@ -99,9 +99,9 @@ app.listen(3000, () => {
 
 This will significantly reduce latency in response and improve query performance.
 
-- ## Horizontal/Vertical scaling
+- ## Scaling
 
-  Depending on the budget allowed for this process, the choice of either scaling method will be determined by the compute resources of the host machine(s).
+  Depending on the budget allowed for this process, the choice of either scaling method will be determined by the compute resources of the host machine(s). To save cost, a single host machine with enough compute resources will host the database, then vertically scaled.
 
   ### Vertical Scaling
 
@@ -109,30 +109,30 @@ This will significantly reduce latency in response and improve query performance
 
   #### Original `users` Table
 
-| userId | userEmail           | fullName         |
-| ------ | ------------------- | ---------------- |
-| 1      | userone@email.com   | Zainab Aliu      |
-| 2      | usertwo@email.com   | Kehinde Samuel   |
-| 3      | userthree@email.com | Precious Alle    |
-| 4      | userfour@email.com  | Muhammed Nketiah |
-| 5      | userfive@email.com  | Justice Emeka    |
+  | userId | userEmail           | fullName         |
+  | ------ | ------------------- | ---------------- |
+  | 1      | userone@email.com   | Zainab Aliu      |
+  | 2      | usertwo@email.com   | Kehinde Samuel   |
+  | 3      | userthree@email.com | Precious Alle    |
+  | 4      | userfour@email.com  | Muhammed Nketiah |
+  | 5      | userfive@email.com  | Justice Emeka    |
 
-#### Table One after partitioning
+  #### Table One after partitioning
 
-| userId | userEmail           |
-| ------ | ------------------- |
-| 1      | userone@email.com   |
-| 2      | usertwo@email.com   |
-| 3      | userthree@email.com |
-| 4      | userfour@email.com  |
-| 5      | userfive@email.com  |
+  | userId | userEmail           |
+  | ------ | ------------------- |
+  | 1      | userone@email.com   |
+  | 2      | usertwo@email.com   |
+  | 3      | userthree@email.com |
+  | 4      | userfour@email.com  |
+  | 5      | userfive@email.com  |
 
-#### Table Two after partitioning
+  #### Table Two after partitioning
 
-| userId | userEmail        |
-| ------ | ---------------- |
-| 1      | Zainab Aliu      |
-| 2      | Kehinde Samuel   |
-| 3      | Precious Alle    |
-| 4      | Muhammed Nketiah |
-| 5      | Justice Emeka    |
+  | userId | userEmail        |
+  | ------ | ---------------- |
+  | 1      | Zainab Aliu      |
+  | 2      | Kehinde Samuel   |
+  | 3      | Precious Alle    |
+  | 4      | Muhammed Nketiah |
+  | 5      | Justice Emeka    |
