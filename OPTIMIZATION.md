@@ -136,3 +136,5 @@ The process involves separating columns into separate tables on the same host ma
 | 3      | Precious Alle    |
 | 4      | Muhammed Nketiah |
 | 5      | Justice Emeka    |
+
+Although, scaling might be early, it is still a viable option to consider in the forseeable future.
