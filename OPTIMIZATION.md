@@ -109,8 +109,14 @@ This will significantly reduce latency in response and improve query performance
 
   **Original Table**
 
-              |users|
+## | users|
 
-  userId | userEmail | fullName
-  1 | userone@email.com | Zainab Aliu
-  1 | usertwo@email.com | Kehinde Samuel
+| users  |
+| ------ | ------------------- | ---------------- |
+| userId | userEmail           | fullName         |
+| ------ | ------------------- | ---------------- |
+| 1      | userone@email.com   | Zainab Aliu      |
+| 2      | usertwo@email.com   | Kehinde Samuel   |
+| 3      | userthree@email.com | Precious Alle    |
+| 4      | userfour@email.com  | Muhammed Nketiah |
+| 5      | userfive@email.com  | Justice Emeka    |
