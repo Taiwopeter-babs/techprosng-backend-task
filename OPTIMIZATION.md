@@ -99,15 +99,15 @@ app.listen(3000, () => {
 
 This will significantly reduce latency in response and improve query performance.
 
-- ### Horizontal/Vertical scaling
+- ## Horizontal/Vertical scaling
 
   Depending on the budget allowed for this process, the choice of either scaling method will be determined by the compute resources of the host machine(s).
 
-  #### Vertical Scaling
+  ### Vertical Scaling
 
   The process involves separating columns into separate tables on the same host machine, but separated columns share the primary key column. Consider the `users` table; `userId`, `fullName`, and `userEmail` can be partitioned into two tables having `userId` and `fullName` in the first table, and the second table containing `userId` and `userEmail`.
 
-  **Original `users` Table**
+  #### Original `users` Table
 
 | userId | userEmail           | fullName         |
 | ------ | ------------------- | ---------------- |
@@ -117,7 +117,7 @@ This will significantly reduce latency in response and improve query performance
 | 4      | userfour@email.com  | Muhammed Nketiah |
 | 5      | userfive@email.com  | Justice Emeka    |
 
-**Table One after partitioning**
+#### Table One after partitioning
 
 | userId | userEmail           |
 | ------ | ------------------- |
@@ -127,7 +127,7 @@ This will significantly reduce latency in response and improve query performance
 | 4      | userfour@email.com  |
 | 5      | userfive@email.com  |
 
-**Table Two after partitioning**
+#### Table Two after partitioning
 
 | userId | userEmail        |
 | ------ | ---------------- |
