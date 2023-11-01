@@ -92,9 +92,10 @@ app.listen(3000, () => {
 ```
 
 - ### Create read replicas
+
   Two database servers can be set up on two different machines. Database A will function as the primary database, the master, which every new write request (INSERT, UPDATE, and DELETE queries) will be directed to. Database B, which is a replica, will have all read requests directed to it.
 
-New write requests will always go to the master, database A, before copy takes place on the replica, where all read requests go directly and exclusively to. This way, even if kehinde, a learner who wants to take a course on mathematics, registers today and his data is written to database A at the same time a long time learner, Zainab, wants to login, two different databases are serving them on the same platform.
+  New write requests will always go to the master, database A, before copy takes place on the replica, where all read requests go directly and exclusively to. This way, even if kehinde, a learner who wants to take a course on mathematics, registers today and his data is written to database A at the same time a long time learner, Zainab, wants to login, two different databases are serving them on the same platform.
 
 This will significantly reduce latency in response and improve query performance.
 
