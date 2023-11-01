@@ -6,8 +6,8 @@ This documentation proposes, in detail, an optimization strategy for an online l
 
 - [Situation](#situation)
 - [Proposal](#proposal)
-  - [Indexing of columns](#indexing-frequently-accessed-columns)
-  - [Caching](#implementation-of-a-caching-system)
+  - [Indexing of columns](#index-frequently-accessed-columns)
+  - [Caching](#implement-of-a-caching-system)
   - [Creating read replica](#creating-read-replicas)
   - [Scaling horizontally or vertically](#horizontalvertical-scaling)
 
@@ -25,11 +25,11 @@ After investigating, three major bottlenecks were identified:
 
 After considering the major bottlenecks identified, four strategies have been highlighted:
 
-- ### Indexing frequently accessed columns
+- ### Index frequently accessed columns
 
   The _userId_ and _userEmail_ columns were identified to have the most frequent access in terms of; retrieval of users' data and authentication of users. Two instances are possible:
 
-  - Separately index the _userId_ and _userEmail_ columns or
+  - Separately index the _userId_ and _userEmail_ columns or;
   - Use a single index for both columns.
 
     Due to the bottlenecks highlighted above, the first option would suffice. Although, this would use more disk space as compared to combining the index of two columns. The reason for this is due to the queries on the database. Most queries involving the _userId_ column use just the _userId_ and the same goes for the _userEmail_.
@@ -57,8 +57,39 @@ After considering the major bottlenecks identified, four strategies have been hi
     CREATE INDEX idx_user_email ON users(userEmail);
     ```
 
-    Of course, this would not matter if the database server is hosted on a machine with a large enough compute resources. Still, it is reasonable to consider the effect many indexes might have on a single database if not required. For this case, separately indexing the columns was useful.
+    Of course, this would not matter if the database server is hosted on a machine with enough compute resources. Still, it is reasonable to consider the effect many indexes might have on a single database if not required. For this case, separately indexing the columns was useful.
 
-- #### Implementation of a caching system
+- ### Implement a caching system
+  Utilizing a cache memory, like redis, to store the most recently accessed query results will improve response times, and ultimately improve query performance. To actualize this, a middleware layer is put in place so that every HTTP `GET` request paases through it to first check the cache memory for the requested resource, and only if the resource is unavailable, then the database is queried.
+
+The example below uses the JavaScript express framework to actualize this:
+
+```js
+const express = require("express");
+
+// initialize the express instance
+const app = express();
+
+app.use("/api/v3");
+
+const checkCacheMiddleware = (req, res, next) => {
+  // logic to check redis cache
+  // if resource is not in cache
+  next();
+  // otherwise serialize resource and send
+  res.status(200).json({ ...resource });
+};
+
+app.get("/users/:userId", checkCacheMiddleware, (req, res) => {
+  // check database for userId, 404 status is returned if not found
+  // return resource
+  res.status(200).json({ ...userObj });
+});
+
+app.listen(3000, () => {
+  console.log(`Express server is on port ${port}`);
+});
+```
+
 - #### Creating read replicas
 - #### Horizontal/Vertical scaling
