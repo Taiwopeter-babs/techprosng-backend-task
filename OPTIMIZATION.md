@@ -31,7 +31,10 @@ After considering the major bottlenecks identified, four strategies have been hi
 
   - Separately index the _userId_ and _userEmail_ columns or
   - Use a single index for both columns.
-    Due to the bottlenecks highlighted above, the first option would suffice. Although, this would use more disk space as compared to combining the index of two columns. The reason for this is due to the queries on the database. Most queries involving the _userId_ column use just the _userId_ and the same goes for the _userEmail_. For example:
+
+    Due to the bottlenecks highlighted above, the first option would suffice. Although, this would use more disk space as compared to combining the index of two columns. The reason for this is due to the queries on the database. Most queries involving the _userId_ column use just the _userId_ and the same goes for the _userEmail_.
+
+    Consider the following query on the `users` table:
 
     ```sql
     -- query the 'users' table for a specific user
@@ -43,9 +46,18 @@ After considering the major bottlenecks identified, four strategies have been hi
     SELECT userId FROM users WHERE userId = '342h8-4332-olearn';
     ```
 
-    The above query is an example of
+    The above query is an example of queries frequently used. Only in required circumstances are two columns combined, which would have justified the usage of the combined index.
 
-    Of course, this would not matter if the database server is hosted on a machine with a large enough compute resources. Still, it is reasonable to consider the effect many indexes might have on a single database.
+    An example query that creates an index on `userEmail` column in the `users` table
+
+    ```sql
+    -- create an index for `userEmail`
+    USE olearn_db;
+
+    CREATE INDEX idx_user_email ON users(userEmail);
+    ```
+
+    Of course, this would not matter if the database server is hosted on a machine with a large enough compute resources. Still, it is reasonable to consider the effect many indexes might have on a single database if not required. For this case, separately indexing the columns was useful.
 
 - #### Implementation of a caching system
 - #### Creating read replicas
