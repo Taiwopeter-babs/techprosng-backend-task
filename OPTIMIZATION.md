@@ -8,7 +8,7 @@ This documentation proposes, in detail, an optimization strategy for an online l
 - [Proposal](#proposal)
   - [Indexing of columns](#index-frequently-accessed-columns)
   - [Caching](#implement-of-a-caching-system)
-  - [Creating read replica](#creating-read-replicas)
+  - [Create read replicas](#create-read-replicas)
   - [Scaling horizontally or vertically](#horizontalvertical-scaling)
 
 ## Situation
@@ -91,5 +91,11 @@ app.listen(3000, () => {
 });
 ```
 
-- #### Creating read replicas
+- ### Create read replicas
+  Two database servers can be set up on two different machines. Database A will function as the primary database, the master, which every new write request (INSERT, UPDATE, and DELETE queries) will be directed to. Database B, which is a replica, will have all read requests directed to it.
+
+New write requests will always go to the master, database A, before copy takes place on the replica, where all read requests go directly and exclusively to. This way, even if kehinde, a learner who wants to take a course on mathematics, registers today and his data is written to database A at the same time a long time learner, Zainab, wants to login, two different databases are serving them on the same platform.
+
+This will significantly reduce latency in response and improve query performance.
+
 - #### Horizontal/Vertical scaling
