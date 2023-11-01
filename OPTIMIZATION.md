@@ -107,9 +107,7 @@ This will significantly reduce latency in response and improve query performance
 
   The process involves separating columns into separate tables on the same host machine, but separated columns share the primary key column. Consider the `users` table; `userId`, `fullName`, and `userEmail` can be partitioned into two tables having `userId` and `fullName` in the first table, and the second table containing `userId` and `userEmail`.
 
-  **Original Table**
-
-## | users|
+  **Original `users` Table**
 
 | userId | userEmail           | fullName         |
 | ------ | ------------------- | ---------------- |
@@ -118,3 +116,23 @@ This will significantly reduce latency in response and improve query performance
 | 3      | userthree@email.com | Precious Alle    |
 | 4      | userfour@email.com  | Muhammed Nketiah |
 | 5      | userfive@email.com  | Justice Emeka    |
+
+**Table One after partitioning**
+
+| userId | userEmail           |
+| ------ | ------------------- |
+| 1      | userone@email.com   |
+| 2      | usertwo@email.com   |
+| 3      | userthree@email.com |
+| 4      | userfour@email.com  |
+| 5      | userfive@email.com  |
+
+**Table Two after partitioning**
+
+| userId | userEmail        |
+| ------ | ---------------- |
+| 1      | Zainab Aliu      |
+| 2      | Kehinde Samuel   |
+| 3      | Precious Alle    |
+| 4      | Muhammed Nketiah |
+| 5      | Justice Emeka    |
