@@ -26,6 +26,7 @@ After investigating, three major bottlenecks were identified:
 After considering the major bottlenecks identified, four strategies have been highlighted:
 
 - #### Indexing frequently accessed columns
+  The **userId**
 - #### Implementation of a caching system
 - #### Creating read replicas
 - #### Horizontal/Vertical scaling
