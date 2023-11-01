@@ -57,7 +57,7 @@ After considering the major bottlenecks identified, four strategies have been hi
     CREATE INDEX idx_user_email ON users(userEmail);
     ```
 
-    Of course, this would not matter if the database server is hosted on a machine with enough compute resources. Still, it is reasonable to consider the effect many indexes might have on a single database if not required. For this case, separately indexing the columns was useful.
+    Of course, this would not matter if the database server is hosted on a machine with enough compute resources. Still, it is reasonable to consider the effect many indexes might have on a single database if not required. But for this case, separately indexing the columns was useful.
 
 - ### Implement a caching system
   Utilizing a cache memory, like redis, to store the most recently accessed query results will improve response times, and ultimately improve query performance. To actualize this, a middleware layer is put in place so that every HTTP `GET` request paases through it to first check the cache memory for the requested resource, and only if the resource is unavailable, then the database is queried.
@@ -95,8 +95,22 @@ app.listen(3000, () => {
 
   Two database servers can be set up on two different machines. Database A will function as the primary database, the master, which every new write request (INSERT, UPDATE, and DELETE queries) will be directed to. Database B, which is a replica, will have all read requests directed to it.
 
-  New write requests will always go to the master, database A, before copy takes place on the replica, where all read requests go directly and exclusively to. This way, even if kehinde, a learner who wants to take a course on mathematics, registers today and his data is written to database A at the same time a long time learner, Zainab, wants to login, two different databases are serving them on the same platform.
+  New write requests will always go to the master, database A, before copy takes place on the replica, where all read requests go directly and exclusively to. This way, even if Kehinde, a learner who wants to take a course on mathematics, registers today and his data is written to the master database at the same time a long time learner, Zainab, wants to login, two different databases are serving them on the same platform.
 
 This will significantly reduce latency in response and improve query performance.
 
-- #### Horizontal/Vertical scaling
+- ### Horizontal/Vertical scaling
+
+  Depending on the budget allowed for this process, the choice of either scaling method will be determined by the compute resources of the host machine(s).
+
+  #### Vertical Scaling
+
+  The process involves separating columns into separate tables on the same host machine, but separated columns share the primary key column. Consider the `users` table; `userId`, `fullName`, and `userEmail` can be partitioned into two tables having `userId` and `fullName` in the first table, and the second table containing `userId` and `userEmail`.
+
+  **Original Table**
+
+              |users|
+
+  userId | userEmail | fullName
+  1 | userone@email.com | Zainab Aliu
+  1 | usertwo@email.com | Kehinde Samuel
