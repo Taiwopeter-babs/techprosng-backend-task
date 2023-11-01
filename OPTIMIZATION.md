@@ -111,8 +111,6 @@ This will significantly reduce latency in response and improve query performance
 
 ## | users|
 
-| users  |
-| ------ | ------------------- | ---------------- |
 | userId | userEmail           | fullName         |
 | ------ | ------------------- | ---------------- |
 | 1      | userone@email.com   | Zainab Aliu      |
