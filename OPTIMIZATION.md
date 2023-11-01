@@ -9,7 +9,7 @@ This documentation proposes, in detail, an optimization strategy for an online l
   - [Indexing of columns](#index-frequently-accessed-columns)
   - [Caching](#implement-of-a-caching-system)
   - [Create read replicas](#create-read-replicas)
-  - [Scaling horizontally or vertically](#horizontalvertical-scaling)
+  - [Scaling](#scaling)
 
 ## Situation
 
