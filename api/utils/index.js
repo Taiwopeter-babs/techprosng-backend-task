@@ -16,6 +16,9 @@ const courses = [
 // an object of list of users and registered courses
 const usersCourses = []
 
+/* Regex for query parameters */
+const checkDigit = /^[0-9]$/;
+
 /**
  * 
  * @param {*} param0 The function takes an object with email, password, and
@@ -50,5 +53,5 @@ function authUser({ email, password, userId }) {
 
 
 module.exports = {
-    users, courses, usersCourses, authUser
+    users, courses, usersCourses, checkDigit, authUser
 }
