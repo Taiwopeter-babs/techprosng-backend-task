@@ -19,6 +19,17 @@ The endpoint validates a user through the email and password in the request body
 {"email": "useremail@email", "password": "testpass"}
 ```
 #### Expected response
-- If a user is not found, a 404 status code is returned with a message:
-```json {message: "Not found"}```
+- If a user is not found, a 404 status code is returned with a JSON message:
+```json
+{"message": "Not found"}
+```
+- If a user is found, but a wrong password is given, a 400 status code is returned with a JSON:
+```json
+{"message": "Wrong password"}
+```
+
+- if a user is found, and the password is validated, a 200 status code is returned with a JSON
+```json
+{"id":userId, "message":"authenticated"}
+```
 
