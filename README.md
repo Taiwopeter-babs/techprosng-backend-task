@@ -29,7 +29,8 @@ The endpoint validates a user through the email and password in the request body
 ```
 
 - if a user is found, and the password is validated, a 200 status code is returned with a JSON
+which contains the id of the user.
 ```json
-{"id":userId, "message":"authenticated"}
+{"id":"userId", "message":"authenticated"}
 ```
 
