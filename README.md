@@ -86,3 +86,28 @@ Run server
 ```
 $ npm run start
 ```
+On another terminal
+
+- Course enrollment
+```
+$ curl -XPOST localhost:3000/api/users/4/courses/3; echo ""
+
+{"message":"enrollment successful","courseId":3,"userId":4,"courseName":"cloud and devops engineering","coursePrice":1000}
+```
+
+- User information retrieval
+```
+$ curl -XGET localhost:3000/api/users/3; echo ""
+
+{"id":3,"email":"userthree@email","name":"Precious Alle"}
+```
+
+- User authentication
+```
+$ curl -XPOST -d '{"email": "userone@email", "password": "password1"}' -H 'content-type: application/json' localhost:3000/api/users; echo ""
+
+{"id":1,"message":"authenticated"}
+```
+
+### Note
+ - node.js runtime version - v20.8.1 was used for development 
