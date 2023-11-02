@@ -13,7 +13,10 @@ API endpoints were designed for three use cases:
 Express, a JavaScript web framework, was used with the Node.js (v20.8.1) runtime environment to develop and test the endpoints. The data used/generated is not persisted in any database or json file as it is arbitrary, and is used for quick prototyping. See [here](https://github.com/Taiwopeter-babs/techprosng-backend-task/blob/070bb90ef44cd1df32027d1bc66df487e573cf67/api/utils/index.js)
 
 ### User Authentication
+
 **`POST /api/users`**
+
+
 The endpoint validates a user through the email and password in the request body sent as JSON:
 ```json
 {"email": "useremail@email", "password": "testpass"}
@@ -37,6 +40,8 @@ which contains the id of the user.
 ### Course Enrollment
 
 **`POST /api/users/:user_id/courses/:course_id`**
+
+
 The endpoint registers a course to a user by linking the `user_id` and `course_id` in a defined `usersCourses` array. See [here](https://github.com/Taiwopeter-babs/techprosng-backend-task/blob/070bb90ef44cd1df32027d1bc66df487e573cf67/api/utils/index.js)
 
 ### Expected response
@@ -51,7 +56,10 @@ The endpoint registers a course to a user by linking the `user_id` and `course_i
 ```
 
 ### User information retrieval
+
 **`GET /api/users/:user_id`**
+
+
 - If a user is not found, a 404 status code is returned with a JSON message:
 ```json
 {"message": "Not found"}
