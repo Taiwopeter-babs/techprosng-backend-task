@@ -34,5 +34,47 @@ which contains the id of the user.
 {"id":"userId", "message":"authenticated"}
 ```
 
-### Course Enrolment
+### Course Enrollment
 
+**`POST /api/users/:user_id/courses/:course_id`**
+The endpoint registers a course to a user by linking the `user_id` and `course_id` in a defined `usersCourses` array. See [here](https://github.com/Taiwopeter-babs/techprosng-backend-task/blob/070bb90ef44cd1df32027d1bc66df487e573cf67/api/utils/index.js)
+
+### Expected response
+```json
+{
+  "message":"enrollment successful",
+  "courseId":"course_id",
+  "userId":"user_id",
+  "courseName":"name of course",
+  "coursePrice":1000 // An example price
+}
+```
+
+### User information retrieval
+**`GET /api/users/:user_id`**
+- If a user is not found, a 404 status code is returned with a JSON message:
+```json
+{"message": "Not found"}
+```
+- if a user with the `user_id` exists, the user data is returned without the password field:
+```json
+{
+  "id":3,
+  "email":"userthree@email",
+  "name":"Precious Alle"
+}
+```
+
+## Usage
+To run this application, simply clone the repository
+```
+$ git clone https://github.com/Taiwopeter-babs/techprosng-backend-task.git
+```
+Install packages
+```
+$ npm install
+```
+Run server
+```
+$ npm run start
+```
